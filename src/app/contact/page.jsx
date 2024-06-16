@@ -18,12 +18,12 @@ export default function Contact() {
           </div>
         </a>
 
-        <a href="tel:3755586849" target="_blank">
+        <a href="tel:3755344429" target="_blank">
           <div className="flex flex-col justify-center items-center w-[250px] h-[200px] mt-1 border border-celeste hover:bg-gris cursor-pointer transition-all duration-300 text-text2">
             <FaPhone size={30} className="text-celeste" />
             <div className="flex flex-col justify-center items-center mt-5">
               <p>Teléfono</p>
-              <p>3755-586849</p>
+              <p>3755-344429</p>
             </div>
           </div>
         </a>
@@ -43,7 +43,7 @@ export default function Contact() {
             <FaMapMarkedAlt size={30} className="text-celeste" />
             <div className="flex flex-col justify-center items-center mt-5">
               <p>Dirección</p>
-              <p>Picada Argentina 2325</p>
+              <p>A definir</p>
             </div>
           </div>
         </a>

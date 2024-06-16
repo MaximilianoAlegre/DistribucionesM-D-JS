@@ -88,7 +88,7 @@ const LoginPage = () => {
           </span>
         )}
 
-        <button className="w-full bg-black text-amarillo hover:shadow-md hover:shadow-amarillo transition-all duration-300 p-3 rounded-lg mt-2">
+        <button className="w-full bg-black text-text1 hover:shadow-md hover:shadow-amarillo transition-all duration-300 p-3 rounded-lg mt-2">
           Iniciar Sesion
         </button>
       </form>

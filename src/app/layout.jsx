@@ -22,11 +22,13 @@ export default function RootLayout({ children }) {
       <body className={roboto.className}>
         <CarritoProvider>
           <TopMenu />
-          <Sidebar/>
+          <Sidebar />
           <Provider>
             <div className="mt-40 w-[90%] mx-auto min-h-screen">{children}</div>
           </Provider>
-          <Footer />
+          <div className="p-2 flex justify-center items-center mt-10">
+            <Footer />
+          </div>
         </CarritoProvider>
       </body>
     </html>
