@@ -47,7 +47,7 @@ const Admin = () => {
             <IoLogOutOutline size={150} />
           </div>
           <div className="flex justify-center items-center text-text1">
-            <h2>CERRAR ADMINISTRACIÓN</h2>
+            <h2>CERRAR SESIÓN</h2>
           </div>
         </button>
       </div>
