@@ -1,0 +1,70 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+body{
+  @apply
+  bg-negro
+  m-0
+  p-0
+}
+
+.btn-primary {
+  @apply bg-gris1 p-4 flex justify-center items-center space-x-3 w-full border-t-4 border-gris2 hover:bg-gris1
+}
+
+.btn-put {
+  @apply bg-green-500 p-4 flex justify-center items-center space-x-3 w-full border-t-4 border-green-950 hover:bg-green-700 text-black
+}
+
+.btn-delete {
+  @apply bg-red-500 p-4 flex justify-center items-center space-x-3 w-full border-t-4 border-red-950 hover:bg-red-700 text-black
+}
+.btn-category {
+  @apply
+  bg-gris
+  text-text1
+  p-3
+  w-full
+  cursor-pointer
+  appearance-none
+}
+
+/* Navbar styles */
+
+
+.ulNav {
+  @apply
+  flex
+  space-x-3
+  }
+
+.liNav {
+  @apply
+  list-none
+  transition-all
+  duration-500
+}
+.linkNav {
+  @apply
+  relative
+  block
+  text-center
+  m-0
+  text-[#848484]
+  text-xl
+  font-thin
+  list-none
+  uppercase
+}
+
+.ulNav:hover li {
+  @apply
+  opacity-20
+  blur-sm
+}
+
+.ulNav li:hover {
+  @apply
+  opacity-100
+  blur-none
+}
