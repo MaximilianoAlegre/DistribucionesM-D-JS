@@ -27,21 +27,21 @@ export const Footer = () => {
             <ul className="flex flex-col justify-center items-start">
               <Link
                 href={"/"}
-                className="px-2 mt-1 hover:text-celeste transition-all duration-300 cursor-pointer w-full text-xs"
+                className="px-2 mt-1 hover:text-celeste transition-all duration-300 cursor-pointer w-full text-xs p-2"
               >
                 INICIO
               </Link>
 
               <Link
                 href={"/products"}
-                className="px-2 mt-1 hover:text-celeste transition-all duration-300 cursor-pointer w-full text-xs"
+                className="px-2 mt-1 hover:text-celeste transition-all duration-300 cursor-pointer w-full text-xs p-2"
               >
                 PRODUCTOS
               </Link>
 
               <Link
                 href={"/contact"}
-                className="px-2 mt-1 hover:text-celeste transition-all duration-300 cursor-pointer w-full text-xs"
+                className="px-2 mt-1 hover:text-celeste transition-all duration-300 cursor-pointer w-full text-xs p-2"
               >
                 CONTACTO
               </Link>
@@ -51,8 +51,18 @@ export const Footer = () => {
         {/* Contacto */}
         <div className="w-[100%] md:w-[30%] flex flex-col justify-center items-start my-1">
           <h2 className="font-bold text-sm">CONTACTO</h2>
-          <p className="text-xs px-2 mt-1">3755-344429</p>
-          <p className="text-xs px-2 mt-1">Maximilianoalegre@gmail.com</p>
+          <a
+            href="tel:3755344429"
+            className="text-xs p-2 hover:text-celeste transition-all duration-300"
+          >
+            3755-344429
+          </a>
+          <a
+            href="mailto:maximilianoalegre@gmail.com"
+            className="text-xs p-2 hover:text-celeste transition-all duration-300"
+          >
+            Maximilianoalegre@gmail.com
+          </a>
         </div>
       </div>
       {/* Derechos reservados */}
