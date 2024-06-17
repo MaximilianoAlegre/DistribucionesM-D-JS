@@ -16,7 +16,7 @@ export const TopMenu = () => {
   const { countProducts } = useCarrito();
 
   return (
-    <div className="flex justify-between items-center w-full bg-negro fixed top-0 left-0 z-10">
+    <div className="flex justify-between items-center w-full bg-gris fixed top-0 left-0 z-10">
       <nav className="w-[90%] mx-auto flex justify-between items-center">
         {/* Logo */}
         <div>

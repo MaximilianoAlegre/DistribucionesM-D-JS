@@ -35,7 +35,7 @@ const Carrito = () => {
   
     // Redirect to WhatsApp link with pre-filled cart content in message
     window.open(
-      `https://api.whatsapp.com/send?phone=3755586849&text=${encodeURIComponent(
+      `https://api.whatsapp.com/send?phone=3755344429&text=${encodeURIComponent(
         fullContent
       )}`,
       "_blank"
@@ -119,7 +119,7 @@ const Carrito = () => {
               </div>
             </>
           ) : (
-            <p className="cart-empty">El carrito está vacío</p>
+            <p className="cart-empty text-text1 text-xs">CARRITO VACÍO</p>
           )}
         </div>
       </div>

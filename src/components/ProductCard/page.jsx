@@ -1,11 +1,11 @@
-'use client';
+"use client";
 import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { IoCartOutline, IoEyeOutline } from "react-icons/io5";
-import { useCarrito } from '@/contexts/CarritoContext'; 
+import { useCarrito } from "@/contexts/CarritoContext";
 
 export const ProductCard = () => {
-  const { addToCart } = useCarrito(); 
+  const { addToCart } = useCarrito();
 
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
@@ -19,7 +19,7 @@ export const ProductCard = () => {
     const fetchData = async () => {
       try {
         const [productRes, categoryRes] = await Promise.all([
-          fetch("/api/products"), 
+          fetch("/api/products"),
           fetch("/api/category"),
         ]);
         const [productData, categoryData] = await Promise.all([
@@ -61,7 +61,6 @@ export const ProductCard = () => {
     }, 3000);
   };
 
-
   const filteredProducts = products.filter(
     (product) =>
       product.title.toLowerCase().includes(searchTerm.toLowerCase()) &&
@@ -78,8 +77,8 @@ export const ProductCard = () => {
   };
 
   return (
-    <div className="pl-2">
-      <div className="md:flex md:space-x-3 items-center justify-end">
+    <div className="pl-2 ">
+      <div className="md:flex md:space-x-3 items-center justify-end ">
         <div>
           <input
             className="p-2 px-3 w-[230px] text-text2 font-thin focus:outline-none bg-gris"
@@ -95,7 +94,7 @@ export const ProductCard = () => {
           ref={categoriesRef}
           onMouseEnter={() => setShowCategories(true)}
           onMouseLeave={() => setShowCategories(false)}
-          onClick={() => setShowCategories(!showCategories)} 
+          onClick={() => setShowCategories(!showCategories)}
         >
           <button className="p-3 text-text2 text-xs bg-gris w-[230px]">
             CATEGORÍAS
@@ -123,28 +122,30 @@ export const ProductCard = () => {
         </div>
       </div>
 
-      <div className="flex flex-wrap justify-center items-stretch gap-2 md:gap-5">
+      <div className="flex flex-wrap justify-between md:justify-center items-stretch gap-2 md:gap-5 ">
         {filteredProducts.map((product) => (
           <div
             key={product.id}
-            className="overflow-hidden fade-in w-[175px] md:w-[280px] h-[270px] md:h-[450px] flex flex-col justify-between bg-gris"
+            className="mt-5 overflow-hidden w-[150px] md:w-[200px] h-[300px] md:h-[350px] flex flex-col justify-between bg-gris"
           >
-            <Link href={`/product/${product.id}`}>
-              <div className="flex justify-center bg-white overflow-hidden items-center w-full h-[130px] md:h-[270px]">
-                <img
-                  src={product.image}
-                  alt={product.title}
-                  className="object-cover w-full"
-                />
-              </div>
+            <Link
+              href={`/product/${product.id}`}
+              className="bg-white w-full h-[60%] flex justify-center items-center overflow-hidden"
+            >
+              <img
+                src={product.image}
+                alt={product.title}
+                className="object-contain w-full h-fit"
+              />
             </Link>
-
-            <div className="w-full h-full md:h-[180px] flex flex-col justify-between">
-              <div className="md:p-4 flex flex-col">
+            <div className="w-full h-[40%] flex flex-col justify-between">
+              <div className="md:p-4 px-1 py-2 flex flex-col justify-between items-center w-full h-full">
                 <Link href={`/product/${product.id}`}>
-                  <p className="hover:text-blue-600 text-text1">{product.title}</p>
+                  <p className="hover:text-blue-600 text-text1 text-xs">
+                    {product.title}
+                  </p>
                 </Link>
-                <span className="font-bold text-text2">${product.price}</span>
+                <span className="font-bold text-text2 text-xs">${product.price}</span>
               </div>
 
               <div className="flex w-full justify-between">
@@ -152,16 +153,16 @@ export const ProductCard = () => {
                   href={`/product/${product.id}`}
                   className="flex justify-center items-center space-x-1 border-b-2 border-celeste p-2 w-full hover:bg-gris1"
                 >
-                  <IoEyeOutline className="text-text1"/>
+                  <IoEyeOutline className="text-text1" />
                   <p className="hidden md:block text-xs text-text1">DETALLES</p>
                 </Link>
-                <div className="w-1 h-full bg-celeste"/>
+                <div className="w-1 h-full bg-celeste" />
 
                 <button
                   onClick={() => onAddProduct(product)}
                   className="flex justify-center items-center space-x-1 border-b-2 border-celeste p-2 w-full hover:bg-gris1"
                 >
-                  <IoCartOutline className="text-text1"/>
+                  <IoCartOutline className="text-text1" />
                   <p className="text-xs hidden md:block text-text1">COMPRAR</p>
                 </button>
               </div>
@@ -169,7 +170,7 @@ export const ProductCard = () => {
           </div>
         ))}
       </div>
-
+      {/* Mensaje de producto agregado al carrito */}
       {showSuccessMessage && (
         <div className="bg-green-500 text-white fixed bottom-5 right-5 p-4 rounded-lg">
           Producto agregado al carrito con éxito

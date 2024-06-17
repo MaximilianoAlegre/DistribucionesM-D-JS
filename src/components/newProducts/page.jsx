@@ -1,9 +1,9 @@
-'use client';
+"use client";
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { IoCartOutline, IoEyeOutline } from "react-icons/io5";
-import { useCarrito } from '@/contexts/CarritoContext';
+import { useCarrito } from "@/contexts/CarritoContext";
 
 export function NewProducts() {
   const [products, setProducts] = useState([]);
@@ -50,30 +50,31 @@ export function NewProducts() {
   return (
     <div className="flex justify-center items-center mt-4">
       <div className="w-full">
-        <h1 className="font-bold text-2xl mb-4 text-text1">
-          Novedades
-        </h1>
+        <h1 className="font-bold text-2xl mb-4 text-text1">Novedades</h1>
 
-        <ul className="flex flex-wrap justify-center items-stretch gap-2 md:gap-5">
+        <ul className="flex flex-wrap justify-between md:justify-center items-stretch gap-2 md:gap-5">
           {lastMonthProducts.map((product) => (
             <div
               key={product.id}
-              className="overflow-hidden fade-in w-[180px] md:w-[280px] h-[270px] md:h-[450px] flex flex-col justify-between bg-gris"
+              className="w-[150px] md:w-[200px] h-[300px] md:h-[350px] flex flex-col justify-between bg-gris mt-5 md:mt-0"
             >
-              <Link href={`/product/${product.id}`}>
-                <div className="flex justify-center bg-white overflow-hidden items-center w-full h-[130px] md:h-[270px]">
-                  <img
-                    src={product.image}
-                    alt={product.title}
-                    className="object-cover w-full"
-                  />
-                </div>
+              <Link
+                href={`/product/${product.id}`}
+                className="bg-white w-full h-[60%] flex justify-center items-center overflow-hidden"
+              >
+                <img
+                  src={product.image}
+                  alt={product.title}
+                  className="object-contain w-full h-fit"
+                />
               </Link>
 
-              <div className="w-full md:h-[180px] flex flex-col justify-between">
-                <div className="p-4 flex flex-col">
+              <div className="w-full md:h-[180px] flex flex-col justify-between h-[40%]">
+                <div className="md:p-4 flex flex-col justify-between py-2 px-1 items-center h-full w-full">
                   <Link href={`/product/${product.id}`}>
-                    <p className="hover:text-blue-600 text-text1">{product.title}</p>
+                    <p className="hover:text-blue-600 text-text1 text-xs md:text-sm">
+                      {product.title}
+                    </p>
                   </Link>
                   <span className="font-bold text-text2">${product.price}</span>
                 </div>
@@ -84,17 +85,21 @@ export function NewProducts() {
                     className="flex justify-center items-center space-x-1 border-b-2 border-celeste p-2 w-full hover:bg-gris1"
                   >
                     <IoEyeOutline className="text-text1" />
-                    <p className="text-xs hidden md:block text-text1">DETALLES</p>
+                    <p className="text-xs hidden md:block text-text1">
+                      DETALLES
+                    </p>
                   </Link>
 
-                  <div className="w-1 h-full bg-celeste"/>
+                  <div className="w-1 h-full bg-celeste" />
 
                   <button
                     onClick={() => onAddProduct(product)}
                     className="flex justify-center items-center space-x-1 border-b-2 border-celeste p-2 w-full hover:bg-gris1"
                   >
                     <IoCartOutline className="text-text1" />
-                    <p className="text-xs hidden md:block text-text1">COMPRAR</p>
+                    <p className="text-xs hidden md:block text-text1">
+                      COMPRAR
+                    </p>
                   </button>
                 </div>
               </div>

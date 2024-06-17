@@ -120,7 +120,7 @@ const CategoryMaker = ({ onSelectCategory }) => {
         {filteredCategories.map((category) => (
           <li
             key={category.id}
-            className="p-2 mt-1 flex justify-between items-center"
+            className="p-2 mt-1 md:flex justify-between items-center py-5 md:py-0"
           >
             {selectedCategoryId === category.id ? (
               <input
@@ -128,10 +128,10 @@ const CategoryMaker = ({ onSelectCategory }) => {
                 placeholder="Nuevo nombre"
                 value={updateCategoryName}
                 onChange={(e) => setUpdateCategoryName(e.target.value)}
-                className="p-2 text-text2 bg-gris"
+                className="p-2 text-text2 bg-gris "
               />
             ) : (
-              <div className="flex justify-center items-center space-x-3">
+              <div className="flex justify-center items-center space-x-3 py-2">
                 <span>{category.id}</span>
                 <span>{category.name}</span>
               </div>

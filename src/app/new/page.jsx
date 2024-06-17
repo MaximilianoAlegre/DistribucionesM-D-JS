@@ -266,9 +266,9 @@ const ProductsMaker = () => {
           {filteredProducts.map((product) => (
             <li
               key={product.id}
-              className="p-1 my-2 flex justify-between items-center"
+              className="p-1 my-2 md:flex justify-between items-center"
             >
-              <div className="flex justify-center items-center space-x-3">
+              <div className="flex justify-center items-center space-x-3 py-5 md:py-0 p-2">
                 <div className="bg-white">
                   <img
                     src={product.image}
