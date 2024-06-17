@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { FaStoreAlt } from "react-icons/fa";
 import { useCarrito } from "@/contexts/CarritoContext";
-import axios from "axios";
 
 export default function SingleProductCasePage({ params }) {
   const { addToCart, successMessage, clearSuccessMessage } = useCarrito();
@@ -13,8 +12,12 @@ export default function SingleProductCasePage({ params }) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get(`http://localhost:3000/api/products/${params.id}`);
-        setProduct(res.data);
+        const res = await fetch(`/api/products/${params.id}`);
+        if (!res.ok) {
+          throw new Error("Product not found");
+        }
+        const productData = await res.json();
+        setProduct(productData);
       } catch (error) {
         notFound();
       }
@@ -44,7 +47,7 @@ export default function SingleProductCasePage({ params }) {
         <img
           src={product?.image}
           alt={product?.title}
-          className="max-w-[600px] h-fit"
+          className="h-fit"
         />
       </div>
       <div className="w-full md:w-[40%] flex flex-col justify-between items-center mt-5 md:mt-0 md:p-10">
