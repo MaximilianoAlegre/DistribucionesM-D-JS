@@ -38,12 +38,12 @@ export default function Contact() {
           </div>
         </a>
 
-        <a href={"https://maps.app.goo.gl/11PJZfqCR6DdxYjE9"} target="_blank">
+        <a href="#" target="_blank">
           <div className="flex flex-col justify-center items-center w-[250px] h-[200px] mt-1 border border-celeste hover:bg-gris cursor-pointer transition-all duration-300 text-text2">
             <FaMapMarkedAlt size={30} className="text-celeste" />
             <div className="flex flex-col justify-center items-center mt-5">
               <p>Dirección</p>
-              <p>A definir</p>
+              <p>Barrio Norte - Oberá Misiones</p>
             </div>
           </div>
         </a>
