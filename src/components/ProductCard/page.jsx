@@ -122,7 +122,7 @@ export const ProductCard = () => {
         </div>
       </div>
 
-      <div className="flex flex-wrap justify-between md:justify-center items-stretch gap-2 md:gap-5 ">
+      <div className="flex flex-wrap justify-center items-stretch gap-5 ">
         {filteredProducts.map((product) => (
           <div
             key={product.id}
