@@ -52,7 +52,7 @@ export function NewProducts() {
       <div className="w-full">
         <h1 className="font-bold text-2xl mb-4 text-text1">Novedades</h1>
 
-        <ul className="flex flex-wrap justify-between md:justify-center items-stretch gap-2 md:gap-5">
+        <ul className="flex flex-wrap justify-center items-stretch gap-5">
           {lastMonthProducts.map((product) => (
             <div
               key={product.id}
