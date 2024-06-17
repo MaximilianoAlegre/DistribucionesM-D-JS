@@ -8,6 +8,7 @@ import { useCarrito } from "@/contexts/CarritoContext";
 export function NewProducts() {
   const [products, setProducts] = useState([]);
   const [error, setError] = useState("");
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
   const router = useRouter();
   const { addToCart } = useCarrito();
 
@@ -45,6 +46,10 @@ export function NewProducts() {
 
   const onAddProduct = (product) => {
     addToCart(product);
+    setShowSuccessMessage(true);
+    setTimeout(() => {
+      setShowSuccessMessage(false);
+    }, 3000);
   };
 
   return (
@@ -94,7 +99,7 @@ export function NewProducts() {
 
                   <button
                     onClick={() => onAddProduct(product)}
-                    className="flex justify-center items-center space-x-1 border-b-2 border-celeste p-2 w-full hover:bg-gris1"
+                    className="flex justify-center items-center space-x-1 border-b-2 border-celeste p-2 w-full md:hover:bg-gris1"
                   >
                     <IoCartOutline className="text-text1" />
                     <p className="text-xs hidden md:block text-text1">
@@ -108,6 +113,13 @@ export function NewProducts() {
         </ul>
 
         {error && <span className="text-red-500 text-xs">{error}</span>}
+
+        {/* Mensaje de producto agregado al carrito */}
+        {showSuccessMessage && (
+          <div className="bg-green-500 text-white fixed bottom-5 right-5 p-4 rounded-lg">
+            Producto agregado al carrito con éxito
+          </div>
+        )}
       </div>
     </div>
   );

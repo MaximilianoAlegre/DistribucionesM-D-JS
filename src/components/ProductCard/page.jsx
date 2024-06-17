@@ -160,7 +160,7 @@ export const ProductCard = () => {
 
                 <button
                   onClick={() => onAddProduct(product)}
-                  className="flex justify-center items-center space-x-1 border-b-2 border-celeste p-2 w-full hover:bg-gris1"
+                  className="flex justify-center items-center space-x-1 border-b-2 border-celeste p-2 w-full md:hover:bg-gris1"
                 >
                   <IoCartOutline className="text-text1" />
                   <p className="text-xs hidden md:block text-text1">COMPRAR</p>
