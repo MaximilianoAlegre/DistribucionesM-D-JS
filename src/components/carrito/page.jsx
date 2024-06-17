@@ -74,12 +74,12 @@ const Carrito = () => {
                           <span className="text-text1 font-bold text-xl">${product.price}</span>
                         </div>
                         <div className="flex items-center">
-                          <div className="flex w-full items-center space-x-1">
-                            <button onClick={() => handleDecrement(product)} className="p-2 focus:outline-none">
+                          <div className="flex w-full items-center space-x-1 text-text1">
+                            <button onClick={() => handleDecrement(product)} className="p-2 focus:outline-none hover:text-celeste">
                               <IoRemove />
                             </button>
                             <span className="p-2">{product.quantity}</span>
-                            <button onClick={() => handleIncrement(product)} className="p-2 focus:outline-none">
+                            <button onClick={() => handleIncrement(product)} className="p-2 focus:outline-none hover:text-celeste">
                               <IoAdd />
                             </button>
                           </div>
