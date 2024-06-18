@@ -28,17 +28,17 @@ export default function Contact() {
           </div>
         </a>
 
-        <a href="mailto:maximilianoalegre@gmail.com" target="_blank">
+        <a href="mailto:alegremaxi04@gmail.com" target="_blank">
           <div className="flex flex-col justify-center items-center w-[250px] h-[200px] mt-1 border border-celeste hover:bg-gris cursor-pointer transition-all duration-300 text-text2">
             <IoMdMail size={30} className="text-celeste" />
             <div className="flex flex-col justify-center items-center mt-5">
               <p>Email</p>
-              <p>maximilianoalegre@gmail.com</p>
+              <p>Alegremaxi04@gmail.com</p>
             </div>
           </div>
         </a>
 
-        <a href="#" target="_blank">
+        <a href="https://maps.app.goo.gl/gkCrGwnRG28ZksA36" target="_blank">
           <div className="flex flex-col justify-center items-center w-[250px] h-[200px] mt-1 border border-celeste hover:bg-gris cursor-pointer transition-all duration-300 text-text2">
             <FaMapMarkedAlt size={30} className="text-celeste" />
             <div className="flex flex-col justify-center items-center mt-5">

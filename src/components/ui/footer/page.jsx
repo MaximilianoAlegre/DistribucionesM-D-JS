@@ -58,10 +58,10 @@ export const Footer = () => {
             3755-344429
           </a>
           <a
-            href="mailto:maximilianoalegre@gmail.com"
+            href="mailto:alegremaxi04@gmail.com"
             className="text-xs p-2 hover:text-celeste transition-all duration-300"
           >
-            Maximilianoalegre@gmail.com
+            Alegremaxi04@gmail.com
           </a>
         </div>
       </div>
