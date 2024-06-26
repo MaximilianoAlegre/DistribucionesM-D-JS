@@ -9,7 +9,7 @@ const ProductsMaker = () => {
     description: "",
     image: "",
     inStock: "",
-    price: "",
+    price: 0, // Inicializar precio como número
     title: "",
     categoryId: null,
   });
@@ -18,13 +18,14 @@ const ProductsMaker = () => {
     description: "",
     image: "",
     inStock: "",
-    price: "",
+    price: 0, // Inicializar precio como número
     title: "",
     categoryId: null,
   });
   const [categories, setCategories] = useState([]);
   const [selectedCategoryName, setSelectedCategoryName] = useState("");
-  const [selectedFilterCategoryId, setSelectedFilterCategoryId] = useState(null);
+  const [selectedFilterCategoryId, setSelectedFilterCategoryId] =
+    useState(null);
   const [searchTerm, setSearchTerm] = useState("");
   const [isEditing, setIsEditing] = useState(false);
 
@@ -86,7 +87,7 @@ const ProductsMaker = () => {
         id: null,
         description: "",
         image: "",
-        inStock: 0,
+        inStock: "",
         price: 0,
         title: "",
         categoryId: null,
@@ -112,7 +113,7 @@ const ProductsMaker = () => {
     const { name, value } = e.target;
     setNewProduct({
       ...newProduct,
-      [name]: value,
+      [name]: name === "price" ? parseFloat(value) : value,
     });
   };
 
@@ -120,7 +121,7 @@ const ProductsMaker = () => {
     const { name, value } = e.target;
     setEditProduct({
       ...editProduct,
-      [name]: value,
+      [name]: name === "price" ? parseFloat(value) : value,
     });
   };
 
@@ -147,7 +148,9 @@ const ProductsMaker = () => {
   };
 
   const handleFilterCategoryChange = (categoryId) => {
-    setSelectedFilterCategoryId(categoryId === "all" ? null : parseInt(categoryId));
+    setSelectedFilterCategoryId(
+      categoryId === "all" ? null : parseInt(categoryId)
+    );
   };
 
   const startEditing = (product) => {
@@ -173,7 +176,7 @@ const ProductsMaker = () => {
       id: null,
       description: "",
       image: "",
-      inStock: 0,
+      inStock: "",
       price: 0,
       title: "",
       categoryId: null,
@@ -191,9 +194,11 @@ const ProductsMaker = () => {
     await updateProduct();
   };
 
-  const filteredProducts = products.filter((product) =>
-    product.title.toLowerCase().includes(searchTerm.toLowerCase()) &&
-    (selectedFilterCategoryId === null || product.categoryId === selectedFilterCategoryId)
+  const filteredProducts = products.filter(
+    (product) =>
+      product.title.toLowerCase().includes(searchTerm.toLowerCase()) &&
+      (selectedFilterCategoryId === null ||
+        product.categoryId === selectedFilterCategoryId)
   );
 
   return (
@@ -240,7 +245,8 @@ const ProductsMaker = () => {
             className="mt-1 p-2 bg-gris text-text1 w-full"
           />
           <label htmlFor="number" className="text-text1 w-full">
-            Stock <span className="text-celeste font-bold">Siempre colocar 1</span>
+            Stock{" "}
+            <span className="text-celeste font-bold">Siempre colocar 1</span>
           </label>
           <input
             placeholder="Stock"
@@ -366,7 +372,10 @@ const ProductsMaker = () => {
                       className="mt-1 p-2 bg-gris text-text1 w-full"
                     />
                     <label htmlFor="number" className="text-text1 w-full">
-                      Stock <span className="text-celeste font-bold">Siempre colocar 1</span>
+                      Stock{" "}
+                      <span className="text-celeste font-bold">
+                        Siempre colocar 1
+                      </span>
                     </label>
                     <input
                       placeholder="Stock"
