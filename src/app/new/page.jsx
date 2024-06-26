@@ -11,7 +11,7 @@ const ProductsMaker = () => {
     inStock: "",
     price: 0, // Inicializar precio como número
     title: "",
-    categoryId: null,
+    categoryId: "",
   });
   const [editProduct, setEditProduct] = useState({
     id: null,
@@ -20,12 +20,11 @@ const ProductsMaker = () => {
     inStock: "",
     price: 0, // Inicializar precio como número
     title: "",
-    categoryId: null,
+    categoryId: "",
   });
   const [categories, setCategories] = useState([]);
   const [selectedCategoryName, setSelectedCategoryName] = useState("");
-  const [selectedFilterCategoryId, setSelectedFilterCategoryId] =
-    useState(null);
+  const [selectedFilterCategoryId, setSelectedFilterCategoryId] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
   const [isEditing, setIsEditing] = useState(false);
 
@@ -65,7 +64,7 @@ const ProductsMaker = () => {
         inStock: 0,
         price: 0,
         title: "",
-        categoryId: null,
+        categoryId: "",
       });
     } catch (error) {
       console.error("Error adding product:", error);
@@ -90,7 +89,7 @@ const ProductsMaker = () => {
         inStock: "",
         price: 0,
         title: "",
-        categoryId: null,
+        categoryId: "",
       });
     } catch (error) {
       console.error("Error updating product:", error);
@@ -149,11 +148,12 @@ const ProductsMaker = () => {
 
   const handleFilterCategoryChange = (categoryId) => {
     setSelectedFilterCategoryId(
-      categoryId === "all" ? null : parseInt(categoryId)
+      categoryId === "all" ? "" : parseInt(categoryId)
     );
   };
 
   const startEditing = (product) => {
+    console.log("Start editing:", product); // Log del producto que se está editando
     setIsEditing(true);
     setEditProduct({
       id: product.id,
@@ -164,11 +164,11 @@ const ProductsMaker = () => {
       title: product.title,
       categoryId: product.categoryId,
     });
-    const selectedCategory = categories.find(
-      (category) => category.id === product.categoryId
-    );
-    setSelectedCategoryName(selectedCategory ? selectedCategory.name : "");
   };
+
+  useEffect(() => {
+    console.log("Edit product state:", editProduct); // Log del estado de editProduct
+  }, [editProduct]);
 
   const cancelEditing = () => {
     setIsEditing(false);
@@ -179,7 +179,7 @@ const ProductsMaker = () => {
       inStock: "",
       price: 0,
       title: "",
-      categoryId: null,
+      categoryId: "",
     });
     setSelectedCategoryName("");
   };
@@ -197,7 +197,7 @@ const ProductsMaker = () => {
   const filteredProducts = products.filter(
     (product) =>
       product.title.toLowerCase().includes(searchTerm.toLowerCase()) &&
-      (selectedFilterCategoryId === null ||
+      (selectedFilterCategoryId === "" ||
         product.categoryId === selectedFilterCategoryId)
   );
 
