@@ -1,19 +1,13 @@
 "use client";
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useMemo, useCallback } from "react";
 import Link from "next/link";
 import { IoCartOutline, IoEyeOutline } from "react-icons/io5";
 import { useCarrito } from "@/contexts/CarritoContext";
+import { debounce } from "lodash";
 
-export const ProductCard = () => {
-  const { addToCart } = useCarrito();
-
+const useFetchData = () => {
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
-  const [searchTerm, setSearchTerm] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState(0);
-  const [showCategories, setShowCategories] = useState(false);
-  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
-  const categoriesRef = useRef(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -36,12 +30,35 @@ export const ProductCard = () => {
     fetchData();
   }, []);
 
+  return { products, categories };
+};
+
+export const ProductCard = () => {
+  const { addToCart } = useCarrito();
+  const { products, categories } = useFetchData();
+
+  const [searchTerm, setSearchTerm] = useState("");
+  const [debouncedSearchTerm, setDebouncedSearchTerm] = useState(searchTerm);
+  const [selectedCategory, setSelectedCategory] = useState(0);
+  const [showCategories, setShowCategories] = useState(false);
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
+  const categoriesRef = useRef(null);
+
+  useEffect(() => {
+    const handler = debounce(() => {
+      setDebouncedSearchTerm(searchTerm);
+    }, 300);
+
+    handler();
+
+    return () => {
+      handler.cancel();
+    };
+  }, [searchTerm]);
+
   useEffect(() => {
     const handleOutsideClick = (event) => {
-      if (
-        categoriesRef.current &&
-        !categoriesRef.current.contains(event.target)
-      ) {
+      if (categoriesRef.current && !categoriesRef.current.contains(event.target)) {
         setShowCategories(false);
       }
     };
@@ -53,28 +70,30 @@ export const ProductCard = () => {
     };
   }, []);
 
-  const onAddProduct = (product) => {
+  const onAddProduct = useCallback((product) => {
     addToCart(product);
     setShowSuccessMessage(true);
     setTimeout(() => {
       setShowSuccessMessage(false);
     }, 3000);
-  };
+  }, [addToCart]);
 
-  const filteredProducts = products.filter(
-    (product) =>
-      product.title.toLowerCase().includes(searchTerm.toLowerCase()) &&
-      (selectedCategory === 0 || product.categoryId === selectedCategory)
-  );
+  const filteredProducts = useMemo(() => {
+    return products.filter(
+      (product) =>
+        product.title.toLowerCase().includes(debouncedSearchTerm.toLowerCase()) &&
+        (selectedCategory === 0 || product.categoryId === selectedCategory)
+    );
+  }, [products, debouncedSearchTerm, selectedCategory]);
 
-  const toggleCategories = () => {
-    setShowCategories(!showCategories);
-  };
+  const toggleCategories = useCallback(() => {
+    setShowCategories((prev) => !prev);
+  }, []);
 
-  const handleCategoryClick = (categoryId) => {
+  const handleCategoryClick = useCallback((categoryId) => {
     setSelectedCategory(categoryId);
     setShowCategories(false);
-  };
+  }, []);
 
   return (
     <div className="pl-2 ">
@@ -94,7 +113,7 @@ export const ProductCard = () => {
           ref={categoriesRef}
           onMouseEnter={() => setShowCategories(true)}
           onMouseLeave={() => setShowCategories(false)}
-          onClick={() => setShowCategories(!showCategories)}
+          onClick={toggleCategories}
         >
           <button className="p-3 text-text2 text-xs bg-gris w-[230px]">
             CATEGORÍAS
